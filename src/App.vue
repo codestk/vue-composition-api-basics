@@ -1,8 +1,8 @@
 <template>
   <nav>
-    <RouterLink to="/"><img src="src\assets\images\step-2.png"/></RouterLink>
-    <RouterLink to="/about"><img src="src\assets\images\step-3.png"/></RouterLink>
-    <RouterLink to="/Step3"><img src="src\assets\images\step-3.png"/></RouterLink>
+    <RouterLink to="/"><img src="@/assets/images/step-2.png"/></RouterLink>
+    <RouterLink to="/about"><img src="@/assets/images/step-3.png"/></RouterLink>
+    <RouterLink to="/Step3"><img src="@/assets/images/step-3.png"/></RouterLink>
   </nav>
 
   <RouterView />
