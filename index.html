@@ -2,12 +2,137 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link href="/assets/SingleForm/css/libs.css" rel="stylesheet">
+    <link href="/assets/SingleForm/css/style.css" rel="stylesheet">
+    <link href="/assets/SingleForm/css/thai.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vue Composition API Basics</title>
+    <title>Single Form</title>
   </head>
   <body>
-    <div id="app"></div>
+    <script>
+      let formParam={
+        Lang: 'EN',
+        HomeURL:'/en',
+        Title: 'Request for opening mutual fund',
+        SubTitle: 'Please enter your information and upload the mutual fund account opening information file received from the distribution agent, for opening a mutual fund account with Bangkok Bank.',
+        Subheader:'Reading a zip file content',
+        SelectFile: 'Choose file',
+        Password:'Password',
+        InfoTitle: 'Customer information',
+        Name:'Name',
+        NameMsg:'Name cannot blank',
+        Surname: 'Last name',
+        SurnameMsg: 'Last name cannot blank',
+        Mobile:'Mobile number',
+        MobileMsg:'Mobile number is incorrect',
+        Email:'Email address',
+        EmailMsg:'Email address is incorrect',
+        Next:'Next',
+        Clear: 'Cancel',
+        Submit: 'Submit',
+        Cancel:'Cancel',
+        Edit: 'Edit',
+        Done: 'Done',
+        TryAgain: 'Try Again',
+        ChooseFile: 'Choose file',
+        UploadMsg: 'Please upload the mutual fund account opening information file in zip file format (.ZIP).',
+        Message:'<p style="padding-right: 10px;">I acknowledge the purposes and details on collection, use and disclosure of personal data of the Bank as well as the rights of the data subject as stated in the Privacy Notice and the Letter Requesting Consent Relating to the Collection, Use and Disclosure of Personal Data prior to agreeing to be bound below and I hereby certify to the Bank that (1) I have notified details of the Privacy Notice of the Bank to the person whose personal data has been previously provided by me to the Bank and such person has acknowledged the details as stated in the Privacy Notice of the Bank and (2) I have lawful rights to disclose any information of other person whose personal data has been provided by me to the Bank.</p>\
+                 <br>\
+                 <p style="padding-right: 10px;">I accept and agree that the Bank has the rights to collect and use personal data which I have provided to the Bank above or which the Bank will obtain from or access to any other sources, as well as to send, transfer or disclose such personal data to business partners of the Bank, outsource service providers, agents of the Bank or any persons related to the business conducts of the Bank, both domestically and internationally, for the purposes as stated in the Privacy Notice of the Bank including for performances in accordance with my request or application or relating to my request or application, or in connection with any agreement or contract entered into between the Bank and other persons, for notice, communication, review, or response to any inquiries or complaints related to my request or application, and for performances in accordance with laws, regulations, orders or procedures prescribed by government agencies or regulatory agencies as well as for exercise of legal claims or enforcement of legal rights.</p>',
+        ResultTitle: 'Please review the details',
+        ResultSubTitle: 'Your mutual fund account opening information file',
+        SuccessTitle: 'Your information has been submitted',
+        SuccessMsg: 'Bangkok Bank has successfully received your information and will send a reference no. to the email you have provided. <br>\
+                     Please use the reference no. and contact any Bangkok Bank branch for opening a mutual fund account from T+2 business days to T+14 business days (T is the date customers submitted information).',
+        FailedTitle: 'Unable to proceed',
+        FailedMsg: 'We cannot proceed your request at this moment, Please try again.',
+        ErrMsg: ['General error', 'Password not match', 'Incorrect password', 'Not a zip file', 'Invalid file content'],
+        Remark: '<b>Note</b> :<br>\
+               <ul><li>For individual mutual fund account opening, not a joint account.</li>\
+               <li>If customers submitted information on a business day by 22:00 hrs (Bangkok Bank system), the transaction will be on the same day. If customers submitted information on a holiday or a business day after 22:00–24:00 hrs (Bangkok Bank system), the transaction will be on the next business day.</li>\
+               <li>You can contact any Bangkok Bank branch for opening a mutual fund account from T+2 business days to T+14 business days (T is the date customers submitted information).</li></ul>'
+      }
+
+        let formParamTH = {
+          Lang: 'TH',
+          HomeURL:'/th-TH',
+          Title: 'บริการรับข้อมูลเปิดบัญชีกองทุน',
+          SubTitle: 'โปรดกรอกข้อมูลและอัปโหลดไฟล์ข้อมูลเปิดบัญชีกองทุนที่ได้ท่านได้รับจากผู้สนับสนุนการขายหรือรับซื้อคืน เพื่อนำมาเป็นข้อมูลในการเปิดบัญชีกองทุนกับธนาคารกรุงเทพ',
+          Subheader: 'Reading a zip file content',
+          SelectFile: 'เลือกไฟล์ที่ต้องการ upload',
+          Password: 'รหัสผ่าน',
+          InfoTitle: 'ข้อมูลลูกค้า',
+          Name: 'ชื่อ',
+          NameMsg: 'กรุณาป้อนชื่อ',
+          Surname: 'นามสกุล',
+          SurnameMsg: 'กรุณาป้อนนามสกุล',
+          Mobile: 'เบอร์มือถือ',
+          MobileMsg: 'เบอร์มือถือไม่ถูกต้อง',
+          Email: 'อีเมล',
+          EmailMsg: 'อีเมลไม่ถูกต้อง',
+          Next: 'ต่อไป',
+          Clear: 'ยกเลิก',
+          Submit: 'ตกลง',
+          Cancel: 'ยกเลิก',
+          Edit: 'แก้ไข',
+          Done: 'รับทราบ',
+          TryAgain: 'ลองใหม่',
+          ChooseFile: 'เลือกไฟล์ที่ต้องการ upload',
+          UploadMsg: 'โปรดอัปโหลดไฟล์ข้อมูลเปิดบัญชีกองทุน ในรูปแบบ Zip File (.ZIP)',
+          Message: '<p style="padding-right: 10px;">ข้าพเจ้าได้ทราบวัตถุประสงค์และรายละเอียดที่เกี่ยวข้องกับการเก็บรวบรวม ใช้ และเปิดเผยข้อมูลส่วนบุคคลของธนาคาร ตลอดจนสิทธิของเจ้าของข้อมูลส่วนบุคคลตามที่กำหนดไว้ใน<a href="https://www.bangkokbank.com/th-TH/Privacy-Notice" rel="noopener" style="color: #4e4e4e; text-decoration: underline;">หนังสือแจ้งการคุ้มครองข้อมูลส่วนบุคคล (Privacy Notice)</a> และหนังสือขอความยินยอมในการเก็บรวบรวม ใช้ และเปิดเผยข้อมูลส่วนบุคคลของธนาคารแล้ว ก่อนการตกลงผูกพันด้านท้ายนี้ และข้าพเจ้าขอรับรองต่อธนาคารว่า (1) ข้าพเจ้าได้แจ้งรายละเอียดตามหนังสือแจ้งการคุ้มครองข้อมูลส่วนบุคคล (Privacy Notice) ของธนาคาร ซึ่งเป็นเจ้าของข้อมูลส่วนบุคคลที่ข้าพเจ้าได้ให้ข้อมูลส่วนบุคคลของบุคคลนั้นไว้แก่ธนาคารตลอดมาทราบแล้ว และบุคคลดังกล่าวได้รับทราบรายละเอียดตามหนังสือแจ้งการคุ้มครองข้อมูลส่วนบุคคล (Privacy Notice) ของธนาคารแล้ว และ (2) ข้าพเจ้ามีสิทธิโดยชอบด้วยกฎหมายในการเปิดเผยข้อมูลใดๆ ของบุคคลอื่น ซึ่งข้าพเจ้าได้ให้ไว้แก่ธนาคาร</p>\
+              <br>\
+              <p style="padding-right: 10px;">ข้าพเจ้ายอมรับและตกลงว่า ธนาคารมีสิทธิเก็บรวบรวม และใช้ ข้อมูลส่วนบุคคลที่ข้าพเจ้าได้ให้ไว้แก่ธนาคารข้างต้น หรือที่ธนาคารจะได้รับหรือเข้าถึงได้จากแหล่งอื่น ตลอดจนมีสิทธิส่ง โอน หรือเปิดเผยข้อมูลดังกล่าวให้แก่พันธมิตรทางธุรกิจของธนาคาร ผู้ให้บริการภายนอก ตัวแทนของธนาคาร หรือบุคคลใดๆ ที่เกี่ยวข้องกับการประกอบธุรกิจของธนาคาร ทั้งในและต่างประเทศ เพื่อวัตถุประสงค์ต่างๆ ตามที่กำหนดไว้ในหนังสือแจ้งการคุ้มครองข้อมูลส่วนบุคคล (Privacy Notice) ของธนาคาร ซึ่งรวมถึงการดำเนินการให้เป็นไปตามคำขอของข้าพเจ้าหรือที่เกี่ยวเนื่องกับคำขอของข้าพเจ้า หรือให้เป็นไปตามสัญญาหรือข้อตกลงที่ทำขึ้นระหว่างธนาคารหรือบุคคลอื่น การแจ้ง ติดต่อ ตรวจสอบ หรือตอบข้อซักถามหรือข้อร้องเรียนใดๆ ที่เกี่ยวข้องกับคำขอของข้าพเจ้า และการดำเนินการต่างๆ ตามที่กฎหมาย กฎเกณฑ์ คำสั่ง หรือระเบียบวิธีปฏิบัติที่หน่วยงานราชการ หรือหน่วยงานกำกับดูแลกำหนด ตลอดจนการใช้สิทธิเรียกร้อง หรือการบังคับสิทธิตามกฎหมาย</p>',
+          ResultTitle: 'โปรดตรวจสอบข้อมูล',
+          ResultSubTitle: 'Your mutual fund account opening information file',
+          SuccessTitle: 'ท่านแจ้งข้อมูลสำเร็จ',
+          SuccessMsg: 'ธนาคารได้รับข้อมูลของท่านเรียบร้อยแล้ว และธนาคารจะนำส่งหมายเลขอ้างอิงไปยังอีเมลที่ท่านให้ไว้ <br>\
+                       โปรดนำหมายเลขอ้างอิงไปติดต่อธนาคารกรุงเทพสาขาที่สะดวกเพื่อดำเนินการเปิดบัญชี ได้ตั้งแต่วันที่ T+2 วันทำการ ถึงวันที่ T+14 วันทำการ (วันที่ T คือ วันที่ท่านแจ้งข้อมูล)',
+          FailedTitle: 'ท่านแจ้งข้อมูลไม่สำเร็จ',
+          FailedMsg: 'ไม่สามารถบันทึกข้อมูลของท่านได้ กรุณาลองใหม่อีกครั้ง',
+          ErrMsg: ['General error', 'Password not match', 'Incorrect password', 'Not a zip file', 'Invalid file content'],
+          Remark: '<b>หมายเหตุ</b> :<br>\
+              <ul><li>เฉพาะการเปิดบัญชีกองทุนสำหรับบุคคลธรรมดา และไม่เป็นบัญชีร่วม</li>\
+              <li>แจ้งข้อมูลภายใน 22:00 น.ของวันทำการ ตามเวลาของระบบงานธนาคาร จะถือเป็นรายการภายในวันนั้น กรณีแจ้งข้อมูลในวันหยุดทำการ หรือช่วงเวลาหลัง 22:00–24:00 น.ของวันทำการ\
+                 ตามเวลาของระบบงานธนาคาร จะถือเป็นรายการของวันทำการถัดไป</li>\
+              <li>ท่านสามารถติดต่อธนาคารกรุงเทพสาขาที่สะดวก เพื่อดำเนินการเปิดบัญชี ได้ตั้งแต่วันที่ T + 2 วันทำการ ถึงวันที่ T + 14 วันทำการ(วันที่ T คือ วันที่ท่านแจ้งข้อมูล)</li></ul>'
+        }
+      
+      // let unrarMemoryFileLocation = '/assets/js/libunrar.js.mem'
+      // let load_counter = 0
+      // let formats = 'rar'
+        
+      // let g_on_loaded_cb = function() {
+      //   load_counter++;
+
+      //   // Get the total number of loads before we are done loading
+      //   // If loading RAR in a Window, have 1 extra load.
+      //   let load_total = formats.length;
+      //   if (formats.indexOf('rar') !== -1 && typeof window === 'object') {
+      //     load_total++;
+      //   }
+
+      //   // run the callback if the last script has loaded
+      //   if (load_counter === load_total) {
+      //     cb();
+      //   }
+      // };
+      //   // let g_on_loaded_cb = checkForLoadDone
+
+  </script>
     <script type="module" src="/src/main.js"></script>
+   
+
+    <div class="container">
+      <div class="inner-container">
+
+  
+        <div id="app" ></div>
+    </div>
+    </div>
+
+
+
+
   </body>
 </html>
